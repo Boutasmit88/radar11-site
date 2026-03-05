@@ -1,0 +1,221 @@
+@import "tailwindcss";
+
+@theme {
+  /* === RADAR11 BRAND COLORS === */
+  --color-navy: #0A0E27;
+  --color-navy-light: #0F1B3D;
+  --color-cyan: #00E5FF;
+  --color-purple: #9C27B0;
+  --color-magenta: #E040FB;
+  --color-teal: #00BCD4;
+  --color-neon-green: #39FF14;
+  --color-white: #FFFFFF;
+  --color-gray-light: #B0BEC5;
+  --color-gray-mid: #546E7A;
+  --color-gray-dark: #1a2332;
+
+  /* === FONTS === */
+  --font-heading: "Rajdhani", "Arial Black", sans-serif;
+  --font-display: "Orbitron", "Arial Black", sans-serif;
+  --font-body: "Inter", "Arial", sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", monospace;
+
+  /* === ANIMATIONS === */
+  --animate-fade-in: fade-in 0.8s ease-out forwards;
+  --animate-fade-up: fade-up 0.8s ease-out forwards;
+  --animate-glow-pulse: glow-pulse 3s ease-in-out infinite;
+  --animate-radar-sweep: radar-sweep 4s linear infinite;
+  --animate-float: float 6s ease-in-out infinite;
+}
+
+/* === FONT IMPORTS === */
+@font-face {
+  font-family: "Rajdhani";
+  src: url("https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&display=swap");
+}
+
+/* === KEYFRAMES === */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(0, 229, 255, 0.15); }
+  50% { box-shadow: 0 0 40px rgba(0, 229, 255, 0.35); }
+}
+
+@keyframes radar-sweep {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* === BASE STYLES === */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-navy);
+  color: var(--color-gray-light);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--color-white);
+  letter-spacing: 0.03em;
+}
+
+::selection {
+  background-color: rgba(0, 229, 255, 0.3);
+  color: var(--color-white);
+}
+
+/* === SCROLLBAR === */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-navy);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-navy-light);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-cyan);
+}
+
+/* === UTILITY CLASSES === */
+.text-gradient-cyan {
+  background: linear-gradient(135deg, var(--color-cyan), var(--color-teal));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-purple {
+  background: linear-gradient(135deg, var(--color-cyan), var(--color-purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.bg-gradient-brand {
+  background: linear-gradient(135deg, var(--color-cyan), var(--color-purple));
+}
+
+.bg-gradient-dark {
+  background: linear-gradient(180deg, var(--color-navy) 0%, var(--color-navy-light) 100%);
+}
+
+.glow-cyan {
+  box-shadow: 0 0 30px rgba(0, 229, 255, 0.2), 0 0 60px rgba(0, 229, 255, 0.1);
+}
+
+.glow-text-cyan {
+  text-shadow: 0 0 20px rgba(0, 229, 255, 0.5);
+}
+
+.border-glow {
+  border: 1px solid rgba(0, 229, 255, 0.2);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.border-glow:hover {
+  border-color: rgba(0, 229, 255, 0.5);
+  box-shadow: 0 0 20px rgba(0, 229, 255, 0.15);
+}
+
+/* === CARD COMPONENT === */
+.card {
+  background: var(--color-navy-light);
+  border: 1px solid rgba(0, 229, 255, 0.1);
+  border-radius: 12px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+}
+.card:hover {
+  border-color: rgba(0, 229, 255, 0.3);
+  box-shadow: 0 0 30px rgba(0, 229, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+/* === BUTTON STYLES === */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 2rem;
+  background: var(--color-cyan);
+  color: var(--color-navy);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.btn-primary:hover {
+  box-shadow: 0 0 30px rgba(0, 229, 255, 0.4);
+  transform: translateY(-1px);
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 2rem;
+  background: transparent;
+  color: var(--color-cyan);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border-radius: 8px;
+  border: 2px solid var(--color-cyan);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.btn-outline:hover {
+  background: rgba(0, 229, 255, 0.1);
+  box-shadow: 0 0 20px rgba(0, 229, 255, 0.2);
+}
+
+/* === GRID BACKGROUND PATTERN === */
+.grid-pattern {
+  background-image:
+    linear-gradient(rgba(0, 229, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 229, 255, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* === RADAR VISUAL ELEMENT === */
+.radar-circle {
+  border: 1px solid rgba(0, 229, 255, 0.15);
+  border-radius: 50%;
+  position: absolute;
+}
