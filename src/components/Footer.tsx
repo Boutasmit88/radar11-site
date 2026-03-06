@@ -18,9 +18,9 @@ export function Footer() {
               />
             </div>
             <p className="text-gray-mid text-sm leading-relaxed">
-              AI-gedreven beslissingsondersteuning voor ambitieuze jeugdvoetbaltrainers.
+              Het AI-platform voor jeugdvoetbaltrainers. Plan trainingen, beoordeel spelers, volg ontwikkeling.
             </p>
-            <p className="text-cyan text-sm italic mt-3">The game is changing.</p>
+            <p className="text-cyan text-sm italic mt-3">Gebouwd door en voor trainers.</p>
           </div>
 
           {/* Product */}

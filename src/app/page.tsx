@@ -1,76 +1,88 @@
-'use client'
-
 import { EarlyAccessForm } from "@/components/EarlyAccessForm";
-import { SplineScene } from "@/components/ui/splite";
 
 /* ───────────────────────── DATA ───────────────────────── */
 
 const STEPS = [
-  { num: "01", title: "Analyseren", desc: "Voer observaties in en herken patronen in spelerontwikkeling.", icon: "🔍" },
-  { num: "02", title: "Beslissen", desc: "Bepaal aandachtspunten en doelen op basis van data, niet onderbuikgevoel.", icon: "🎯" },
-  { num: "03", title: "Ontwerpen", desc: "Stel trainingen samen die aansluiten op de ontwikkeldoelen.", icon: "⚙️" },
-  { num: "04", title: "Evalueren", desc: "Meet voortgang en voed de volgende cyclus met inzichten.", icon: "📊" },
+  { num: "01", title: "Observeren", desc: "Leg je observaties vast tijdens en na de training. Wat zie je bij elke speler?", icon: "👁️" },
+  { num: "02", title: "Analyseren", desc: "Radar11 herkent patronen en toont waar elke speler staat in zijn ontwikkeling.", icon: "📊" },
+  { num: "03", title: "Plannen", desc: "Stel je training samen op basis van data. Niet op gevoel, maar op inzicht.", icon: "📋" },
+  { num: "04", title: "Evalueren", desc: "Meet het effect van je keuzes en begin de volgende week scherper.", icon: "✅" },
 ];
 
 const FEATURES = [
-  { title: "Wekelijks Besliskader", desc: "Structureer je complete trainersweek in één overzichtelijk systeem. Van observatie tot evaluatie.", icon: "📋" },
-  { title: "Spelersontwikkeling", desc: "Volg individuele groei per speler. Niet alleen het team, maar elk talent verdient aandacht.", icon: "⚽" },
-  { title: "AI-suggesties", desc: "Ontvang slimme aanbevelingen voor trainingsfocus op basis van je observaties en doelen.", icon: "🤖" },
-  { title: "Periodisering (VCT)", desc: "Wetenschappelijk onderbouwde seizoensplanning met Visual Coaching Tool integratie.", icon: "📅" },
-  { title: "Mobiel-eerst", desc: "Plan je training op de bus naar het veld. Alles werkt perfect op je telefoon.", icon: "📱" },
-  { title: "Cluboverzicht", desc: "TC-coördinatoren zien alle teams in één dashboard. Consistente aanpak door de hele jeugd.", icon: "🏟️" },
+  {
+    title: "Trainingen plannen",
+    desc: "Bouw je trainingsweek op in een paar minuten. Koppel oefeningen aan ontwikkeldoelen en zie direct of je programma in balans is.",
+    icon: "⚽",
+    details: ["Oefeningen koppelen aan doelen", "Weekplanning in één overzicht", "Hergebruik je beste sessies"],
+  },
+  {
+    title: "Spelers beoordelen",
+    desc: "Beoordeel elke speler op techniek, inzicht, fysiek en mentaliteit. Zie groei over weken en maanden.",
+    icon: "📊",
+    details: ["Techniek & balvaardigheid", "Spelintelligentie & positiespel", "Fysieke ontwikkeling", "Trainingsopkomst"],
+  },
+  {
+    title: "AI-trainingsadvies",
+    desc: "Op basis van je observaties geeft Radar11 suggesties voor je volgende training. Gericht op wat je spelers écht nodig hebben.",
+    icon: "🤖",
+    details: ["Persoonlijke aanbevelingen", "Gebaseerd op jouw data", "Elke week slimmer"],
+  },
+  {
+    title: "Seizoensplanning",
+    desc: "Plan je seizoen met wetenschappelijk onderbouwde periodisering. Weet wanneer je moet pieken en wanneer je moet bouwen.",
+    icon: "📅",
+    details: ["Periodisering per blok", "VCT-integratie", "Automatische fasering"],
+  },
+  {
+    title: "Werkt op je telefoon",
+    desc: "Alles wat je nodig hebt past in je broekzak. Plan je training op de bus naar het veld.",
+    icon: "📱",
+    details: ["Volledig mobiel", "Snel invoeren", "Offline beschikbaar"],
+  },
+  {
+    title: "Clubdashboard",
+    desc: "TC-coördinatoren zien alle teams in één overzicht. Consistente aanpak door de hele jeugdopleiding.",
+    icon: "🏟️",
+    details: ["Alle teams op één plek", "Vergelijk ontwikkeling", "Eén lijn in de club"],
+  },
 ];
 
-const TESTIMONIALS = [
-  { quote: "Eindelijk een tool die begrijpt hoe mijn week als jeugdtrainer eruitziet. Geen overbodige rommel, gewoon focus.", name: "Jeroen V.", role: "Trainer U15, amateurclub Brabant" },
-  { quote: "Ik besteed 30 minuten minder per week aan voorbereiding en mijn trainingen zijn beter onderbouwd.", name: "Lisa M.", role: "Trainer U13, Zuid-Holland" },
-  { quote: "De spelersontwikkeling-module maakt het verschil. Nu kan ik ouders ook écht laten zien hoe hun kind groeit.", name: "Mark D.", role: "TC-coördinator, club in Gelderland" },
+const USE_CASES = [
+  {
+    role: "Trainers",
+    desc: "Plan trainingen, beoordeel spelers en volg hun ontwikkeling — alles in één tool.",
+    items: ["Weekplanning maken", "Spelers evalueren", "Training samenstellen", "Voortgang bijhouden"],
+    icon: "🎽",
+  },
+  {
+    role: "Clubs & TC's",
+    desc: "Eén systeem voor de hele jeugdopleiding. Overzicht, consistentie en kwaliteitsborging.",
+    items: ["Overzicht alle teams", "Lijn in de club", "Talent signaleren", "Kwaliteit borgen"],
+    icon: "🏟️",
+  },
+  {
+    role: "Spelers & ouders",
+    desc: "Inzicht in persoonlijke groei. Geen vaag gevoel, maar concrete data over ontwikkeling.",
+    items: ["Eigen voortgang zien", "Doelen begrijpen", "Ontwikkeling volgen", "Feedback ontvangen"],
+    icon: "⚽",
+  },
 ];
 
 const STATS = [
-  { value: "40.000+", label: "Jeugdtrainers in NL" },
-  { value: "< 5%", label: "Gebruikt digitale tools" },
-  { value: "45 min", label: "Tijdsbesparing per week" },
-  { value: "4.8/5", label: "Beta-gebruikersscore" },
-];
-
-const PRICING = [
-  {
-    name: "Trainer",
-    price: "€9,99",
-    period: "/maand",
-    desc: "Voor de individuele ambitieuze trainer",
-    features: ["1 team", "Wekelijks besliskader", "Spelersontwikkeling", "Mobiele app"],
-    cta: "Start gratis proefperiode",
-    highlight: false,
-  },
-  {
-    name: "Team Pro",
-    price: "€24,99",
-    period: "/maand",
-    desc: "Trainer + assistent, uitgebreide analyse",
-    features: ["2 teams", "Alles in Trainer", "AI-suggesties", "Video-integratie", "Periodisering"],
-    cta: "Start gratis proefperiode",
-    highlight: true,
-  },
-  {
-    name: "Club",
-    price: "€99",
-    period: "/maand",
-    desc: "Hele jeugdafdeling in één systeem",
-    features: ["5–15 teams", "Alles in Team Pro", "Clubdashboard", "Meerdere gebruikers", "Prioriteit support"],
-    cta: "Neem contact op",
-    highlight: false,
-  },
+  { value: "4 stappen", label: "Van observatie tot evaluatie" },
+  { value: "< 10 min", label: "Trainingsvoorbereiding" },
+  { value: "100%", label: "Gratis tijdens de beta" },
+  { value: "Nu open", label: "Early access beschikbaar" },
 ];
 
 const FAQ = [
-  { q: "Hoe verschilt Radar11 van Coachbetter of Hudl?", a: "Coachbetter focust op trainingsplanning, Hudl op video-analyse. Radar11 is het enige platform dat de wekelijkse besliscyclus van een jeugdtrainer structureert: van observatie naar trainingskeuze naar evaluatie. Wij zijn de 'decision layer', niet een plannings- of videotool." },
-  { q: "Heb ik technische kennis nodig?", a: "Absoluut niet. Radar11 is ontworpen voor trainers op het veld, niet voor data-analisten. Als je WhatsApp kunt gebruiken, kun je Radar11 gebruiken. Onboarding duurt minder dan 3 minuten." },
-  { q: "Werkt het ook voor pupillenteams (U8–U12)?", a: "De focus ligt op U12–U19, maar de basisprincipes van gestructureerde spelersontwikkeling gelden voor alle leeftijden. In de beta testen we ook met U10–U12 trainers." },
-  { q: "Wat kost het?", a: "De beta is gratis. Na de beta starten de prijzen vanaf €9,99/maand voor individuele trainers. Clubs en academies krijgen een prijs op maat. Er is altijd een gratis tier beschikbaar." },
-  { q: "Is mijn data veilig?", a: "Ja. We slaan alle data versleuteld op in de EU (AVG-compliant). Spelersdata wordt geanonimiseerd en we delen nooit gegevens met derden. Privacy staat centraal." },
-  { q: "Kan ik Radar11 met mijn hele staf gebruiken?", a: "Ja! Met Team Pro en Club-licenties kun je meerdere trainers en assistenten toevoegen. De TC-coördinator krijgt een overzicht van alle teams." },
+  { q: "Hoe verschilt Radar11 van Coachbetter of Hudl?", a: "Coachbetter focust op trainingsplanning, Hudl op video-analyse. Radar11 is het enige platform dat de wekelijkse besliscyclus van een jeugdtrainer structureert: van observatie naar trainingskeuze naar evaluatie. Wij zijn de beslissingslaag, niet een plannings- of videotool." },
+  { q: "Heb ik technische kennis nodig?", a: "Absoluut niet. Radar11 is ontworpen voor trainers op het veld, niet voor data-analisten. Als je WhatsApp kunt gebruiken, kun je Radar11 gebruiken. Je bent binnen 3 minuten aan de slag." },
+  { q: "Werkt het ook voor pupillenteams (O8–O12)?", a: "De focus ligt op O12–O19, maar de basisprincipes van gestructureerde spelersontwikkeling gelden voor alle leeftijden. In de beta testen we ook met O10–O12 trainers." },
+  { q: "Wat kost het?", a: "Tijdens de beta is Radar11 volledig gratis. Na de beta starten de prijzen vanaf €9,99/maand. Early access gebruikers krijgen founding member korting." },
+  { q: "Is mijn data veilig?", a: "Ja. Alle data wordt versleuteld opgeslagen in de EU (AVG-compliant). Spelersdata wordt geanonimiseerd en we delen nooit gegevens met derden." },
+  { q: "Kan ik Radar11 met mijn hele staf gebruiken?", a: "Ja! Je kunt meerdere trainers en assistenten toevoegen. De TC-coördinator krijgt een overzicht van alle teams." },
 ];
 
 /* ───────────────────────── PAGE ───────────────────────── */
@@ -84,46 +96,43 @@ export default function HomePage() {
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-cyan/5 blur-3xl" />
           <div className="absolute top-1/3 right-1/4 w-[300px] h-[300px] rounded-full bg-purple/5 blur-3xl" />
-          {/* Radar circles */}
           <div className="radar-circle w-[200px] h-[200px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-20" />
           <div className="radar-circle w-[400px] h-[400px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-10" />
           <div className="radar-circle w-[600px] h-[600px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-5" />
-        </div>
-
-        {/* 3D Robot behind text */}
-        <div className="absolute inset-0 z-[1]">
-          <SplineScene
-            scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
-            className="w-full h-full"
-          />
         </div>
 
         <div className="relative z-10 max-w-5xl mx-auto px-6 text-center pt-24 pb-20">
           {/* Beta badge */}
           <div className="inline-flex items-center gap-2 bg-cyan/10 border border-cyan/20 rounded-full px-4 py-1.5 mb-8">
             <span className="w-2 h-2 bg-cyan rounded-full animate-pulse" />
-            <span className="text-cyan text-xs font-semibold uppercase tracking-widest">Beta Nu Open</span>
+            <span className="text-cyan text-xs font-semibold uppercase tracking-widest">Beta nu open</span>
           </div>
 
-          <h1 className="font-[var(--font-heading)] text-5xl md:text-7xl lg:text-8xl font-bold text-white uppercase tracking-wide leading-none mb-6 drop-shadow-[0_0_30px_rgba(0,0,0,0.8)]">
-            The Game Is{" "}
-            <span className="text-gradient-cyan">Changing</span>
+          <h1 className="font-[var(--font-heading)] text-4xl md:text-6xl lg:text-7xl font-bold text-white uppercase tracking-wide leading-none mb-4">
+            Het platform voor{" "}
+            <span className="text-gradient-cyan">slimmere jeugdtrainers</span>
           </h1>
 
-          <p className="text-gray-light text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed drop-shadow-[0_0_20px_rgba(0,0,0,0.9)]">
-            Radar11 helpt ambitieuze jeugdvoetbaltrainers om elke week betere
-            ontwikkelingsbeslissingen te nemen — met AI-ondersteunde structuur
-            voor analyse, training en evaluatie.
+          <p className="text-white/90 text-xl md:text-2xl font-medium max-w-3xl mx-auto mb-4 leading-snug">
+            Plan trainingen. Beoordeel spelers. Volg ontwikkeling.
           </p>
 
-          <div className="flex flex-col items-center gap-6">
+          <p className="text-gray-light text-base md:text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
+            Radar11 brengt alles samen in één AI-gedreven platform — zodat jij
+            betere beslissingen neemt voor je spelers.
+          </p>
+
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-4">
             <a href="#early-access" className="btn-primary text-base px-8 py-4">
-              Aanmelden voor Early Access →
+              Start gratis →
             </a>
-            <p className="text-gray-mid text-xs">
-              ✓ Gratis beta &nbsp; ✓ Geen creditcard &nbsp; ✓ Direct starten
-            </p>
+            <a href="#hoe-werkt-het" className="btn-outline text-base px-8 py-4">
+              Bekijk hoe het werkt
+            </a>
           </div>
+          <p className="text-gray-mid text-xs">
+            Gratis tijdens de beta · Geen creditcard nodig · Direct aan de slag
+          </p>
 
           {/* Scroll indicator */}
           <div className="mt-16 animate-bounce">
@@ -150,26 +159,27 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ═══ PROBLEM ═══ */}
+      {/* ═══ PROBLEEM ═══ */}
       <section className="py-24 md:py-32 relative" id="product">
         <div className="max-w-7xl mx-auto px-6">
           <div className="max-w-3xl mx-auto text-center mb-16">
+            <p className="text-cyan text-sm font-semibold uppercase tracking-widest mb-4">Het probleem</p>
             <h2 className="font-[var(--font-heading)] text-3xl md:text-5xl font-bold text-white uppercase tracking-wide mb-6">
-              Het Probleem
+              Trainers verdienen beter gereedschap
             </h2>
             <p className="text-gray-light text-lg leading-relaxed">
-              40.000 jeugdtrainers in Nederland nemen wekelijks tientallen
-              ontwikkelingsbeslissingen op basis van onderbuikgevoel. Er is geen
-              hulpmiddel dat hen helpt om <em className="text-cyan">systematisch</em> te analyseren,
-              plannen en evalueren.
+              De meeste jeugdtrainers werken met WhatsApp-groepen, Excel-lijstjes
+              en losse aantekeningen. Er is geen tool die hen helpt om{" "}
+              <em className="text-cyan not-italic font-semibold">structureel betere keuzes</em> te maken
+              voor hun spelers.
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-6">
             {[
-              { title: "Geen structuur", desc: "Theorie uit cursussen bereikt de praktijk niet. Trainers werken met WhatsApp, Excel en losse aantekeningen.", icon: "🧩" },
-              { title: "Tijdsdruk", desc: "2–3 uur per week voorbereiding, versnipperd over tools. Geen geïntegreerde workflow.", icon: "⏱️" },
-              { title: "Resultaat boven ontwikkeling", desc: "Bestaande tools focussen op wedstrijden, niet op individuele spelerontwikkeling. Het kind verdwijnt uit beeld.", icon: "🎯" },
+              { title: "Geen structuur", desc: "Cursuskennis bereikt de praktijk niet. Je werkt met losse tools die niet samenwerken. Voorbereiding kost te veel tijd.", icon: "🧩" },
+              { title: "Geen spelersdata", desc: "Je ziet je spelers groeien, maar je kunt het niet bijhouden. Ouders vragen hoe het gaat — je hebt geen concreet antwoord.", icon: "📉" },
+              { title: "Focus op resultaat", desc: "Bestaande tools draaien om wedstrijduitslagen. Niet om de individuele ontwikkeling van elk kind in je team.", icon: "🎯" },
             ].map((problem) => (
               <div key={problem.title} className="card group">
                 <div className="text-3xl mb-4">{problem.icon}</div>
@@ -180,24 +190,21 @@ export default function HomePage() {
               </div>
             ))}
           </div>
-
-          <p className="text-center text-cyan font-semibold text-sm mt-10 tracking-wide">
-            Gevolg: ongelijke kansen voor jeugdspelers, bepaald door de toevallige kwaliteit van hun trainer.
-          </p>
         </div>
       </section>
 
-      {/* ═══ SOLUTION: 4-STEP CYCLE ═══ */}
-      <section className="py-24 md:py-32 bg-navy-light relative overflow-hidden">
+      {/* ═══ HOE WERKT HET: 4 STAPPEN ═══ */}
+      <section className="py-24 md:py-32 bg-navy-light relative overflow-hidden" id="hoe-werkt-het">
         <div className="absolute inset-0 grid-pattern opacity-50 pointer-events-none" />
         <div className="relative z-10 max-w-7xl mx-auto px-6">
           <div className="max-w-3xl mx-auto text-center mb-16">
+            <p className="text-cyan text-sm font-semibold uppercase tracking-widest mb-4">Hoe werkt het</p>
             <h2 className="font-[var(--font-heading)] text-3xl md:text-5xl font-bold text-white uppercase tracking-wide mb-6">
-              De Oplossing
+              Vier stappen, elke week
             </h2>
             <p className="text-gray-light text-lg leading-relaxed">
-              Radar11 structureert je wekelijkse cyclus in vier stappen —
-              van observatie naar onderbouwde actie.
+              Radar11 geeft structuur aan je trainersweek. Van observatie
+              tot evaluatie — elke stap bouwt voort op de vorige.
             </p>
           </div>
 
@@ -214,7 +221,6 @@ export default function HomePage() {
                   </h3>
                   <p className="text-gray-light text-sm leading-relaxed">{step.desc}</p>
                 </div>
-                {/* Arrow between steps */}
                 {i < 3 && (
                   <div className="hidden md:block absolute top-1/2 -right-3 text-cyan/30 text-2xl -translate-y-1/2 z-20">
                     →
@@ -224,23 +230,23 @@ export default function HomePage() {
             ))}
           </div>
 
-          {/* Cycle indicator */}
           <div className="text-center mt-8">
             <span className="text-cyan/40 text-sm tracking-widest">↻ DE CYCLUS HERHAALT ELKE WEEK</span>
           </div>
         </div>
       </section>
 
-      {/* ═══ FEATURES ═══ */}
+      {/* ═══ FUNCTIONALITEITEN ═══ */}
       <section className="py-24 md:py-32" id="features">
         <div className="max-w-7xl mx-auto px-6">
           <div className="max-w-3xl mx-auto text-center mb-16">
+            <p className="text-cyan text-sm font-semibold uppercase tracking-widest mb-4">Functionaliteiten</p>
             <h2 className="font-[var(--font-heading)] text-3xl md:text-5xl font-bold text-white uppercase tracking-wide mb-6">
               Alles wat je nodig hebt
             </h2>
             <p className="text-gray-light text-lg leading-relaxed">
-              Gebouwd door en voor jeugdtrainers. Elke feature is ontworpen om
-              je wekelijkse werk eenvoudiger en effectiever te maken.
+              Gebouwd door en voor jeugdtrainers. Elke functie is ontworpen om
+              je wekelijkse werk concreet eenvoudiger te maken.
             </p>
           </div>
 
@@ -251,100 +257,138 @@ export default function HomePage() {
                 <h3 className="font-[var(--font-heading)] text-white text-lg font-bold uppercase tracking-wider mb-3">
                   {feature.title}
                 </h3>
-                <p className="text-gray-light text-sm leading-relaxed">{feature.desc}</p>
+                <p className="text-gray-light text-sm leading-relaxed mb-4">{feature.desc}</p>
+                <ul className="space-y-1.5">
+                  {feature.details.map((d) => (
+                    <li key={d} className="flex items-center gap-2 text-xs text-gray-mid">
+                      <span className="text-cyan text-xs">✓</span> {d}
+                    </li>
+                  ))}
+                </ul>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ═══ SOCIAL PROOF ═══ */}
+      {/* ═══ VOOR WIE ═══ */}
       <section className="py-24 md:py-32 bg-navy-light border-y border-cyan/10">
         <div className="max-w-7xl mx-auto px-6">
           <div className="max-w-3xl mx-auto text-center mb-16">
+            <p className="text-cyan text-sm font-semibold uppercase tracking-widest mb-4">Voor wie</p>
             <h2 className="font-[var(--font-heading)] text-3xl md:text-5xl font-bold text-white uppercase tracking-wide mb-6">
-              Wat beta-trainers zeggen
+              Gebouwd voor het hele veld
             </h2>
           </div>
 
           <div className="grid md:grid-cols-3 gap-6">
-            {TESTIMONIALS.map((t) => (
-              <div key={t.name} className="card">
-                <div className="text-cyan text-4xl leading-none mb-4">"</div>
-                <p className="text-gray-light text-sm leading-relaxed mb-6 italic">{t.quote}</p>
-                <div>
-                  <p className="text-white font-semibold text-sm">{t.name}</p>
-                  <p className="text-gray-mid text-xs">{t.role}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ═══ PRICING ═══ */}
-      <section className="py-24 md:py-32" id="pricing">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="max-w-3xl mx-auto text-center mb-16">
-            <h2 className="font-[var(--font-heading)] text-3xl md:text-5xl font-bold text-white uppercase tracking-wide mb-6">
-              Pricing
-            </h2>
-            <p className="text-gray-light text-lg leading-relaxed">
-              Start gratis in de beta. Schaal op wanneer je klaar bent.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-            {PRICING.map((tier) => (
-              <div
-                key={tier.name}
-                className={`card relative ${
-                  tier.highlight
-                    ? "border-cyan/40 shadow-lg shadow-cyan/10"
-                    : ""
-                }`}
-              >
-                {tier.highlight && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-cyan to-purple text-navy text-xs font-bold uppercase tracking-widest px-4 py-1 rounded-full">
-                    Populair
-                  </div>
-                )}
-                <h3 className="font-[var(--font-heading)] text-white text-xl font-bold uppercase tracking-wider mb-2">
-                  {tier.name}
+            {USE_CASES.map((uc) => (
+              <div key={uc.role} className="card">
+                <div className="text-3xl mb-4">{uc.icon}</div>
+                <h3 className="font-[var(--font-heading)] text-white text-xl font-bold uppercase tracking-wider mb-3">
+                  {uc.role}
                 </h3>
-                <p className="text-gray-mid text-sm mb-4">{tier.desc}</p>
-                <div className="mb-6">
-                  <span className="font-[var(--font-heading)] text-4xl font-bold text-white">
-                    {tier.price}
-                  </span>
-                  <span className="text-gray-mid text-sm">{tier.period}</span>
-                </div>
-                <ul className="space-y-2.5 mb-8">
-                  {tier.features.map((f) => (
-                    <li key={f} className="flex items-center gap-2 text-sm text-gray-light">
-                      <span className="text-cyan">✓</span> {f}
+                <p className="text-gray-light text-sm leading-relaxed mb-4">{uc.desc}</p>
+                <ul className="space-y-2">
+                  {uc.items.map((item) => (
+                    <li key={item} className="flex items-center gap-2 text-sm text-gray-mid">
+                      <span className="text-cyan">→</span> {item}
                     </li>
                   ))}
                 </ul>
-                <a
-                  href="#early-access"
-                  className={tier.highlight ? "btn-primary w-full text-sm" : "btn-outline w-full text-sm"}
-                >
-                  {tier.cta}
-                </a>
               </div>
             ))}
           </div>
-
-          <p className="text-center text-gray-mid text-xs mt-8">
-            Prijzen na beta. Huidige beta-gebruikers krijgen founding member korting.
-          </p>
         </div>
       </section>
 
-      {/* ═══ EARLY ACCESS CTA ═══ */}
+      {/* ═══ SOCIAL PROOF (eerlijk, beta-context) ═══ */}
+      <section className="py-24 md:py-32">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="max-w-3xl mx-auto text-center mb-16">
+            <p className="text-cyan text-sm font-semibold uppercase tracking-widest mb-4">Waarom Radar11</p>
+            <h2 className="font-[var(--font-heading)] text-3xl md:text-5xl font-bold text-white uppercase tracking-wide mb-6">
+              Wat maakt Radar11 anders?
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            {[
+              { label: "Andere tools", items: ["Gericht op wedstrijduitslagen", "Video-analyse of statistieken", "Complex en tijdrovend", "Gebouwd voor profclubs"], color: "gray-mid" },
+              { label: "Radar11", items: ["Gericht op spelersontwikkeling", "Wekelijks besliskader", "Klaar in minuten", "Gebouwd voor jeugdtrainers"], color: "cyan" },
+            ].map((col) => (
+              <div key={col.label} className="card">
+                <h3 className={`font-[var(--font-heading)] text-${col.color} text-lg font-bold uppercase tracking-wider mb-4`}>
+                  {col.label}
+                </h3>
+                <ul className="space-y-3">
+                  {col.items.map((item) => (
+                    <li key={item} className="flex items-center gap-3 text-sm text-gray-light">
+                      <span className={col.color === "cyan" ? "text-cyan" : "text-gray-mid"}>
+                        {col.color === "cyan" ? "✓" : "—"}
+                      </span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ PRIJZEN: BETA FOCUS ═══ */}
+      <section className="py-24 md:py-32 bg-navy-light" id="pricing">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="max-w-3xl mx-auto text-center mb-16">
+            <p className="text-cyan text-sm font-semibold uppercase tracking-widest mb-4">Prijzen</p>
+            <h2 className="font-[var(--font-heading)] text-3xl md:text-5xl font-bold text-white uppercase tracking-wide mb-6">
+              Gratis tijdens de beta
+            </h2>
+            <p className="text-gray-light text-lg leading-relaxed">
+              We bouwen Radar11 samen met trainers. Daarom is het platform
+              volledig gratis zolang we in beta zijn.
+            </p>
+          </div>
+
+          <div className="max-w-lg mx-auto">
+            <div className="card border-cyan/30 shadow-lg shadow-cyan/10 text-center">
+              <div className="inline-flex items-center gap-2 bg-cyan/10 border border-cyan/20 rounded-full px-4 py-1.5 mb-6">
+                <span className="w-2 h-2 bg-cyan rounded-full animate-pulse" />
+                <span className="text-cyan text-xs font-semibold uppercase tracking-widest">Beta</span>
+              </div>
+              <h3 className="font-[var(--font-heading)] text-white text-2xl font-bold uppercase tracking-wider mb-2">
+                Volledig gratis
+              </h3>
+              <p className="text-gray-mid text-sm mb-6">Alle functies, geen beperkingen, geen creditcard</p>
+
+              <div className="mb-8">
+                <span className="font-[var(--font-heading)] text-5xl font-bold text-cyan">€0</span>
+                <span className="text-gray-mid text-sm"> /maand</span>
+              </div>
+
+              <ul className="space-y-3 mb-8 text-left max-w-xs mx-auto">
+                {["Trainingen plannen", "Spelers beoordelen", "AI-trainingsadvies", "Seizoensplanning", "Mobiele app", "Onbeperkte teams"].map((f) => (
+                  <li key={f} className="flex items-center gap-2 text-sm text-gray-light">
+                    <span className="text-cyan">✓</span> {f}
+                  </li>
+                ))}
+              </ul>
+
+              <a href="#early-access" className="btn-primary w-full text-base">
+                Start gratis →
+              </a>
+
+              <p className="text-gray-mid text-xs mt-4">
+                Early access gebruikers krijgen founding member korting na de beta.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ AANMELDEN ═══ */}
       <section className="py-24 md:py-32 relative overflow-hidden" id="early-access">
-        {/* Gradient background */}
         <div className="absolute inset-0 bg-gradient-to-br from-cyan/10 via-navy to-purple/10" />
         <div className="absolute inset-0 grid-pattern opacity-30" />
 
@@ -353,8 +397,8 @@ export default function HomePage() {
             Word een van de eersten
           </h2>
           <p className="text-gray-light text-lg leading-relaxed mb-10">
-            De beta is nu open voor ambitieuze jeugdtrainers in Nederland.
-            Meld je aan en begin vandaag nog met betere trainingsbeslissingen.
+            Meld je aan voor de beta en begin vandaag nog met betere
+            trainingsbeslissingen. Gratis, vrijblijvend, direct toegang.
           </p>
 
           <div className="flex justify-center">
@@ -363,9 +407,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ═══ FAQ ═══ */}
+      {/* ═══ VEELGESTELDE VRAGEN ═══ */}
       <section className="py-24 md:py-32 bg-navy-light" id="faq">
         <div className="max-w-3xl mx-auto px-6">
+          <p className="text-cyan text-sm font-semibold uppercase tracking-widest mb-4 text-center">Vragen</p>
           <h2 className="font-[var(--font-heading)] text-3xl md:text-5xl font-bold text-white uppercase tracking-wide mb-12 text-center">
             Veelgestelde vragen
           </h2>
@@ -389,17 +434,17 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ═══ FINAL CTA ═══ */}
+      {/* ═══ LAATSTE CTA ═══ */}
       <section className="py-20 border-t border-cyan/10">
         <div className="max-w-3xl mx-auto px-6 text-center">
-          <p className="font-[var(--font-heading)] text-cyan text-lg italic mb-4">
-            "The game is changing."
-          </p>
-          <h2 className="font-[var(--font-heading)] text-2xl md:text-4xl font-bold text-white uppercase tracking-wide mb-8">
-            Doe mee met de toekomst van jeugdvoetbal
+          <h2 className="font-[var(--font-heading)] text-2xl md:text-4xl font-bold text-white uppercase tracking-wide mb-4">
+            Klaar om je trainersweek te structureren?
           </h2>
+          <p className="text-gray-light text-base mb-8">
+            Sluit je aan bij trainers die nu al betere keuzes maken voor hun spelers.
+          </p>
           <a href="#early-access" className="btn-primary text-base px-8 py-4">
-            Start met Radar11 →
+            Start gratis met Radar11 →
           </a>
         </div>
       </section>

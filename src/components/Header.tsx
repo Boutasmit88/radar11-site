@@ -5,10 +5,11 @@ import Link from "next/link";
 import Image from "next/image";
 
 const NAV_ITEMS = [
-  { label: "Product", href: "#product" },
-  { label: "Features", href: "#features" },
-  { label: "Pricing", href: "#pricing" },
-  { label: "FAQ", href: "#faq" },
+  { label: "Hoe het werkt", href: "#hoe-werkt-het" },
+  { label: "Functies", href: "#features" },
+  { label: "Voor wie", href: "#product" },
+  { label: "Prijzen", href: "#pricing" },
+  { label: "Vragen", href: "#faq" },
 ];
 
 export function Header() {
@@ -59,7 +60,7 @@ export function Header() {
             href="#early-access"
             className="btn-primary text-sm py-2.5 px-5"
           >
-            Early Access →
+            Start gratis →
           </a>
         </nav>
 
@@ -94,7 +95,7 @@ export function Header() {
               </a>
             ))}
             <a href="#early-access" className="btn-primary text-sm py-3 text-center mt-2">
-              Early Access →
+              Start gratis →
             </a>
           </nav>
         </div>
