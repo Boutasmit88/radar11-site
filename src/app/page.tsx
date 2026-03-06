@@ -52,6 +52,12 @@ const FEATURES = [
     icon: "🏟️",
     details: ["Alle teams op één plek", "Vergelijk ontwikkeling", "Eén lijn in de club"],
   },
+  {
+    title: "Voetbal.nl & Sportlink",
+    desc: "Koppel Radar11 aan Voetbal.nl en Sportlink. Spelersgegevens, wedstrijddata en teaminfo worden automatisch gesynchroniseerd.",
+    icon: "🔗",
+    details: ["Automatische spelersimport", "Wedstrijddata ophalen", "Teamindelingen synchroniseren", "Geen dubbel werk"],
+  },
 ];
 
 const USE_CASES = [
@@ -322,7 +328,7 @@ export default function HomePage() {
           <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
             {[
               { label: "Andere tools", items: ["Gericht op wedstrijduitslagen", "Video-analyse of statistieken", "Complex en tijdrovend", "Gebouwd voor profclubs"], color: "gray-mid" },
-              { label: "Radar11", items: ["Gericht op spelersontwikkeling", "Wekelijks besliskader", "Klaar in minuten", "Gebouwd voor jeugdtrainers"], color: "cyan" },
+              { label: "Radar11", items: ["Gericht op spelersontwikkeling", "Wekelijks besliskader", "Klaar in minuten", "Gebouwd door trainers, voor trainers"], color: "cyan" },
             ].map((col) => (
               <div key={col.label} className="card">
                 <h3 className={`font-[var(--font-heading)] text-${col.color} text-lg font-bold uppercase tracking-wider mb-4`}>
