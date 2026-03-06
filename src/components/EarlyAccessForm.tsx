@@ -6,15 +6,36 @@ export function EarlyAccessForm({ variant = "default" }: { variant?: "default" |
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [role, setRole] = useState("trainer");
+  const [honeypot, setHoneypot] = useState(""); // Bot trap
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    // TODO: Connect to email service (Mailchimp/ConvertKit/Resend)
-    await new Promise((r) => setTimeout(r, 1000));
-    setSubmitted(true);
+    setError("");
+
+    try {
+      const res = await fetch("/api/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, name, role, honeypot }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setError(data.error || "Er ging iets mis. Probeer het opnieuw.");
+        setLoading(false);
+        return;
+      }
+
+      setSubmitted(true);
+    } catch {
+      setError("Verbindingsfout. Controleer je internet en probeer opnieuw.");
+    }
+
     setLoading(false);
   };
 
@@ -24,7 +45,7 @@ export function EarlyAccessForm({ variant = "default" }: { variant?: "default" |
         <div className="text-4xl mb-3">🎯</div>
         <h3 className="text-white text-xl font-bold mb-2">Je staat op de lijst!</h3>
         <p className="text-gray-light text-sm">
-          We sturen je binnenkort een uitnodiging voor de beta. Check je inbox.
+          We hebben een welkomstmail gestuurd naar <strong className="text-cyan">{email}</strong>. Check je inbox (en spam).
         </p>
       </div>
     );
@@ -32,22 +53,36 @@ export function EarlyAccessForm({ variant = "default" }: { variant?: "default" |
 
   if (variant === "compact") {
     return (
-      <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 w-full max-w-lg">
-        <input
-          type="email"
-          required
-          placeholder="je@email.nl"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className="flex-1 bg-navy-light border border-cyan/20 rounded-lg px-4 py-3 text-white text-sm placeholder:text-gray-mid focus:border-cyan focus:outline-none focus:ring-1 focus:ring-cyan/30 transition-all"
-        />
-        <button
-          type="submit"
-          disabled={loading}
-          className="btn-primary whitespace-nowrap text-sm py-3 disabled:opacity-50"
-        >
-          {loading ? "Bezig..." : "Aanmelden →"}
-        </button>
+      <form onSubmit={handleSubmit} className="w-full max-w-lg">
+        <div className="flex flex-col sm:flex-row gap-3">
+          {/* Honeypot - hidden from real users */}
+          <input
+            type="text"
+            name="website"
+            value={honeypot}
+            onChange={(e) => setHoneypot(e.target.value)}
+            tabIndex={-1}
+            autoComplete="off"
+            className="absolute opacity-0 h-0 w-0 pointer-events-none"
+            aria-hidden="true"
+          />
+          <input
+            type="email"
+            required
+            placeholder="je@email.nl"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="flex-1 bg-navy-light border border-cyan/20 rounded-lg px-4 py-3 text-white text-sm placeholder:text-gray-mid focus:border-cyan focus:outline-none focus:ring-1 focus:ring-cyan/30 transition-all"
+          />
+          <button
+            type="submit"
+            disabled={loading}
+            className="btn-primary whitespace-nowrap text-sm py-3 disabled:opacity-50"
+          >
+            {loading ? "Bezig..." : "Aanmelden →"}
+          </button>
+        </div>
+        {error && <p className="text-red-400 text-xs mt-2 text-center">{error}</p>}
       </form>
     );
   }
@@ -57,6 +92,17 @@ export function EarlyAccessForm({ variant = "default" }: { variant?: "default" |
       <h3 className="font-[var(--font-heading)] text-white text-lg font-bold uppercase tracking-wider">
         Meld je aan voor Early Access
       </h3>
+      {/* Honeypot - hidden from real users */}
+      <input
+        type="text"
+        name="website"
+        value={honeypot}
+        onChange={(e) => setHoneypot(e.target.value)}
+        tabIndex={-1}
+        autoComplete="off"
+        className="absolute opacity-0 h-0 w-0 pointer-events-none"
+        aria-hidden="true"
+      />
       <div>
         <input
           type="text"
@@ -89,6 +135,7 @@ export function EarlyAccessForm({ variant = "default" }: { variant?: "default" |
           <option value="other">Anders</option>
         </select>
       </div>
+      {error && <p className="text-red-400 text-xs text-center">{error}</p>}
       <button
         type="submit"
         disabled={loading}
