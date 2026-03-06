@@ -1,4 +1,9 @@
+'use client'
+
 import { EarlyAccessForm } from "@/components/EarlyAccessForm";
+import { SplineScene } from "@/components/ui/splite";
+import { Card } from "@/components/ui/card";
+import { Spotlight } from "@/components/ui/spotlight";
 
 /* ───────────────────────── DATA ───────────────────────── */
 
@@ -99,10 +104,41 @@ export default function HomePage() {
             <span className="text-gradient-cyan">Changing</span>
           </h1>
 
+          {/* 3D Robot Scene */}
+          <Card className="w-full max-w-5xl h-[400px] md:h-[500px] bg-black/[0.96] border-cyan/10 relative overflow-hidden mb-10 mx-auto">
+            <Spotlight
+              className="-top-40 left-0 md:left-60 md:-top-20"
+              fill="#00E5FF"
+            />
+            
+            <div className="flex h-full">
+              {/* Left content */}
+              <div className="flex-1 p-6 md:p-8 relative z-10 flex flex-col justify-center">
+                <h2 className="text-2xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400">
+                  AI-Powered
+                </h2>
+                <h2 className="text-2xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400">
+                  Coaching
+                </h2>
+                <p className="mt-4 text-neutral-300 max-w-lg text-sm md:text-base">
+                  Radar11 helpt ambitieuze jeugdvoetbaltrainers om elke week betere
+                  ontwikkelingsbeslissingen te nemen — met AI-ondersteunde structuur.
+                </p>
+              </div>
+
+              {/* Right content - 3D Robot */}
+              <div className="flex-1 relative">
+                <SplineScene 
+                  scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
+                  className="w-full h-full"
+                />
+              </div>
+            </div>
+          </Card>
+
           <p className="text-gray-light text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
-            Radar11 helpt ambitieuze jeugdvoetbaltrainers om elke week betere
-            ontwikkelingsbeslissingen te nemen — met AI-ondersteunde structuur
-            voor analyse, training en evaluatie.
+            Van analyse tot evaluatie — structureer je complete trainersweek
+            met data-gedreven inzichten en AI-suggesties.
           </p>
 
           <div className="flex flex-col items-center gap-6">
