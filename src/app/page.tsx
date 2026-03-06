@@ -5,16 +5,22 @@ import { EarlyAccessForm } from "@/components/EarlyAccessForm";
 const STEPS = [
   { num: "01", title: "Observeren", desc: "Leg je observaties vast tijdens en na de training. Wat zie je bij elke speler?", icon: "👁️" },
   { num: "02", title: "Analyseren", desc: "Radar11 herkent patronen en toont waar elke speler staat in zijn ontwikkeling.", icon: "📊" },
-  { num: "03", title: "Plannen", desc: "Stel je training samen op basis van data. Niet op gevoel, maar op inzicht.", icon: "📋" },
+  { num: "03", title: "Plannen", desc: "Stel je training samen in minuten — met oefenstof uit de bibliotheek en gericht op wat je spelers nodig hebben.", icon: "📋" },
   { num: "04", title: "Evalueren", desc: "Meet het effect van je keuzes en begin de volgende week scherper.", icon: "✅" },
 ];
 
 const FEATURES = [
   {
-    title: "Trainingen plannen",
-    desc: "Bouw je trainingsweek op in een paar minuten. Koppel oefeningen aan ontwikkeldoelen en zie direct of je programma in balans is.",
+    title: "Training maken in minuten",
+    desc: "Stel in een paar klikken een complete training samen. Kies uit kant-en-klare oefeningen, koppel ze aan ontwikkeldoelen en je bent klaar.",
     icon: "⚽",
-    details: ["Oefeningen koppelen aan doelen", "Weekplanning in één overzicht", "Hergebruik je beste sessies"],
+    details: ["Drag & drop trainingsopbouw", "Koppel oefeningen aan doelen", "Weekplanning in één overzicht", "Hergebruik je beste sessies"],
+  },
+  {
+    title: "Oefenstof bibliotheek",
+    desc: "Toegang tot honderden oefeningen, gesorteerd op leeftijd, thema en niveau. Nooit meer zonder inspiratie op het veld.",
+    icon: "📚",
+    details: ["Honderden oefeningen beschikbaar", "Filter op leeftijd & thema", "Met uitleg en opstellingen", "Eigen oefeningen toevoegen"],
   },
   {
     title: "Spelers beoordelen",
@@ -114,20 +120,21 @@ export default function HomePage() {
           </h1>
 
           <p className="text-white/90 text-xl md:text-2xl font-medium max-w-3xl mx-auto mb-4 leading-snug">
-            Plan trainingen. Beoordeel spelers. Volg ontwikkeling.
+            Maak in minuten een training. Beoordeel spelers. Volg ontwikkeling.
           </p>
 
           <p className="text-gray-light text-base md:text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
-            Radar11 brengt alles samen in één AI-gedreven platform — zodat jij
-            betere beslissingen neemt voor je spelers.
+            Radar11 brengt trainingsplanning, oefenstof en spelersanalyse samen
+            in één AI-gedreven platform — zodat jij betere beslissingen neemt
+            voor je spelers.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-4">
             <a href="#early-access" className="btn-primary text-base px-8 py-4">
               Start gratis →
             </a>
-            <a href="#hoe-werkt-het" className="btn-outline text-base px-8 py-4">
-              Bekijk hoe het werkt
+            <a href="#demo" className="btn-outline text-base px-8 py-4">
+              Boek een demo
             </a>
           </div>
           <p className="text-gray-mid text-xs">
@@ -434,6 +441,27 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ═══ BOEK EEN DEMO ═══ */}
+      <section className="py-24 md:py-32 bg-navy-light border-y border-cyan/10" id="demo">
+        <div className="max-w-3xl mx-auto px-6 text-center">
+          <p className="text-cyan text-sm font-semibold uppercase tracking-widest mb-4">Demo</p>
+          <h2 className="font-[var(--font-heading)] text-3xl md:text-5xl font-bold text-white uppercase tracking-wide mb-6">
+            Liever eerst zien hoe het werkt?
+          </h2>
+          <p className="text-gray-light text-lg leading-relaxed mb-10">
+            Plan een korte demo van 15 minuten. We laten je zien hoe je in
+            Radar11 een training maakt, spelers beoordeelt en je week structureert.
+          </p>
+          <a
+            href="mailto:info@radar11.com?subject=Demo%20aanvragen&body=Hoi%2C%20ik%20wil%20graag%20een%20demo%20van%20Radar11%20plannen."
+            className="btn-primary text-base px-8 py-4"
+          >
+            Boek een demo →
+          </a>
+          <p className="text-gray-mid text-xs mt-4">We nemen binnen 24 uur contact op</p>
+        </div>
+      </section>
+
       {/* ═══ LAATSTE CTA ═══ */}
       <section className="py-20 border-t border-cyan/10">
         <div className="max-w-3xl mx-auto px-6 text-center">
@@ -443,9 +471,14 @@ export default function HomePage() {
           <p className="text-gray-light text-base mb-8">
             Sluit je aan bij trainers die nu al betere keuzes maken voor hun spelers.
           </p>
-          <a href="#early-access" className="btn-primary text-base px-8 py-4">
-            Start gratis met Radar11 →
-          </a>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a href="#early-access" className="btn-primary text-base px-8 py-4">
+              Start gratis met Radar11 →
+            </a>
+            <a href="#demo" className="btn-outline text-base px-8 py-4">
+              Boek een demo
+            </a>
+          </div>
         </div>
       </section>
     </>
