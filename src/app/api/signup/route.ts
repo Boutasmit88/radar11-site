@@ -71,7 +71,9 @@ export async function POST(req: NextRequest) {
     const fromEmail = process.env.RESEND_FROM_EMAIL || "noreply@send.radar11.com";
     const fromAddress = fromEmail.includes("<") ? fromEmail : `Radar11 <${fromEmail}>`;
 
-    const { error: emailError } = await resend.emails.send({
+    console.log("Sending email from:", fromAddress, "to:", email);
+
+    const { data: emailData, error: emailError } = await resend.emails.send({
       from: fromAddress,
       to: email,
       subject: "Welkom bij Radar11 — Je staat op de Early Access lijst! 🎯",
@@ -84,12 +86,16 @@ export async function POST(req: NextRequest) {
     });
 
     if (emailError) {
-      console.error("Email error:", emailError);
+      console.error("Email error:", JSON.stringify(emailError));
+      console.error("From address used:", fromAddress);
+      console.error("RESEND_FROM_EMAIL env:", process.env.RESEND_FROM_EMAIL);
       return NextResponse.json(
-        { error: "Er ging iets mis bij het versturen. Probeer het opnieuw." },
+        { error: `Fout: ${emailError.message}` },
         { status: 500 }
       );
     }
+
+    console.log("Email sent successfully:", emailData);
 
     // 3. Send notification to yourself
     if (process.env.NOTIFY_EMAIL) {
