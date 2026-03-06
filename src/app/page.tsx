@@ -2,8 +2,6 @@
 
 import { EarlyAccessForm } from "@/components/EarlyAccessForm";
 import { SplineScene } from "@/components/ui/splite";
-import { Card } from "@/components/ui/card";
-import { Spotlight } from "@/components/ui/spotlight";
 
 /* ───────────────────────── DATA ───────────────────────── */
 
@@ -92,6 +90,14 @@ export default function HomePage() {
           <div className="radar-circle w-[600px] h-[600px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-5" />
         </div>
 
+        {/* 3D Robot behind text */}
+        <div className="absolute inset-0 z-[1]">
+          <SplineScene
+            scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
+            className="w-full h-full"
+          />
+        </div>
+
         <div className="relative z-10 max-w-5xl mx-auto px-6 text-center pt-24 pb-20">
           {/* Beta badge */}
           <div className="inline-flex items-center gap-2 bg-cyan/10 border border-cyan/20 rounded-full px-4 py-1.5 mb-8">
@@ -99,46 +105,15 @@ export default function HomePage() {
             <span className="text-cyan text-xs font-semibold uppercase tracking-widest">Beta Nu Open</span>
           </div>
 
-          <h1 className="font-[var(--font-heading)] text-5xl md:text-7xl lg:text-8xl font-bold text-white uppercase tracking-wide leading-none mb-6">
+          <h1 className="font-[var(--font-heading)] text-5xl md:text-7xl lg:text-8xl font-bold text-white uppercase tracking-wide leading-none mb-6 drop-shadow-[0_0_30px_rgba(0,0,0,0.8)]">
             The Game Is{" "}
             <span className="text-gradient-cyan">Changing</span>
           </h1>
 
-          {/* 3D Robot Scene */}
-          <Card className="w-full max-w-5xl h-[400px] md:h-[500px] bg-black/[0.96] border-cyan/10 relative overflow-hidden mb-10 mx-auto">
-            <Spotlight
-              className="-top-40 left-0 md:left-60 md:-top-20"
-              fill="#00E5FF"
-            />
-            
-            <div className="flex h-full">
-              {/* Left content */}
-              <div className="flex-1 p-6 md:p-8 relative z-10 flex flex-col justify-center">
-                <h2 className="text-2xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400">
-                  AI-Powered
-                </h2>
-                <h2 className="text-2xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400">
-                  Coaching
-                </h2>
-                <p className="mt-4 text-neutral-300 max-w-lg text-sm md:text-base">
-                  Radar11 helpt ambitieuze jeugdvoetbaltrainers om elke week betere
-                  ontwikkelingsbeslissingen te nemen — met AI-ondersteunde structuur.
-                </p>
-              </div>
-
-              {/* Right content - 3D Robot */}
-              <div className="flex-1 relative">
-                <SplineScene 
-                  scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
-                  className="w-full h-full"
-                />
-              </div>
-            </div>
-          </Card>
-
-          <p className="text-gray-light text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
-            Van analyse tot evaluatie — structureer je complete trainersweek
-            met data-gedreven inzichten en AI-suggesties.
+          <p className="text-gray-light text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed drop-shadow-[0_0_20px_rgba(0,0,0,0.9)]">
+            Radar11 helpt ambitieuze jeugdvoetbaltrainers om elke week betere
+            ontwikkelingsbeslissingen te nemen — met AI-ondersteunde structuur
+            voor analyse, training en evaluatie.
           </p>
 
           <div className="flex flex-col items-center gap-6">
