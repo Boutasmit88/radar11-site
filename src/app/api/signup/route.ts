@@ -68,8 +68,11 @@ export async function POST(req: NextRequest) {
     }
 
     // 2. Send welcome email
+    const fromEmail = process.env.RESEND_FROM_EMAIL || "noreply@send.radar11.com";
+    const fromAddress = fromEmail.includes("<") ? fromEmail : `Radar11 <${fromEmail}>`;
+
     const { error: emailError } = await resend.emails.send({
-      from: process.env.RESEND_FROM_EMAIL || "Radar11 <onboarding@resend.dev>",
+      from: fromAddress,
       to: email,
       subject: "Welkom bij Radar11 — Je staat op de Early Access lijst! 🎯",
       html: welcomeEmailHtml(safeName),
@@ -91,7 +94,7 @@ export async function POST(req: NextRequest) {
     // 3. Send notification to yourself
     if (process.env.NOTIFY_EMAIL) {
       await resend.emails.send({
-        from: process.env.RESEND_FROM_EMAIL || "Radar11 <onboarding@resend.dev>",
+        from: fromAddress,
         to: process.env.NOTIFY_EMAIL,
         subject: `🆕 Nieuwe Early Access aanmelding: ${email}`,
         html: `
