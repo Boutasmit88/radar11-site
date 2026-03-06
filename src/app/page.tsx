@@ -106,7 +106,9 @@ export default function HomePage() {
           </p>
 
           <div className="flex flex-col items-center gap-6">
-            <EarlyAccessForm variant="compact" />
+            <a href="#early-access" className="btn-primary text-base px-8 py-4">
+              Aanmelden voor Early Access →
+            </a>
             <p className="text-gray-mid text-xs">
               ✓ Gratis beta &nbsp; ✓ Geen creditcard &nbsp; ✓ Direct starten
             </p>
